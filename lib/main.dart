@@ -3,6 +3,7 @@
 // import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'home.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,9 +16,22 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 }
 
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.white,
+      child: Image.asset('images/muted-logo.webp'),
+    );
+  }
+}
+
 class _MyAppState extends State<MyApp> {
   String btnName = "Button Unclicked";
-  bool clicked = false;
+  bool button1clicked = false;
+  bool button2clicked = false;
   int currIndex = 2;
   String _context = "a";
   dynamic btn1Color = Colors.red;
@@ -54,8 +68,8 @@ class _MyAppState extends State<MyApp> {
                         ),
                         onPressed: () {
                           setState(() {
-                            clicked = !clicked;
-                            if (clicked) {
+                            button1clicked = !button1clicked;
+                            if (button1clicked) {
                               btn1Color = Colors.greenAccent;
                             } else {
                               btn1Color = Colors.red;
@@ -67,8 +81,8 @@ class _MyAppState extends State<MyApp> {
                       ElevatedButton(
                         onPressed: () {
                           setState(() {
-                            clicked = !clicked;
-                            if (clicked) {
+                            button2clicked = !button2clicked;
+                            if (button2clicked) {
                               btnName = 'Button Clicked';
                             } else {
                               btnName = 'Button Unclicked';
@@ -80,10 +94,7 @@ class _MyAppState extends State<MyApp> {
                     ],
                   ),
                 )
-              : Container(
-                  color: Colors.white,
-                  child: Image.asset('images/brand.png'),
-                ),
+              : const Home(),
         ),
         bottomNavigationBar: BottomNavigationBar(
           items: const [
