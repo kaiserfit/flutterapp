@@ -1,0 +1,27 @@
+bottomNavigationBar: BottomNavigationBar(
+          
+          items: const [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.folder),
+              label: 'My Stuff',
+            ),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.phone_android_sharp), label: 'Coach'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.shopping_cart_rounded), label: 'Shop'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.account_circle_sharp), label: 'Account')
+          ],
+          fixedColor: Colors.white,
+          backgroundColor: Colors.grey.shade900,
+          type: BottomNavigationBarType.fixed,
+          currentIndex: currIndex,
+          unselectedItemColor: Colors.grey.shade700,
+          unselectedFontSize: 12,
+          onTap: (int index) {
+            setState(() {
+              currIndex = index;
+            });
+          },
+        ),

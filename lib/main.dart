@@ -6,11 +6,11 @@ import 'package:flutter/material.dart';
 import 'home.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
-  MyApp({super.key});
+  const MyApp({super.key});
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -33,8 +33,23 @@ class _MyAppState extends State<MyApp> {
   bool button1clicked = false;
   bool button2clicked = false;
   int currIndex = 2;
-  String _context = "a";
+  final String _context = "as";
   dynamic btn1Color = Colors.red;
+  final screens = [
+    const Home(),
+    const Center(child: Text('My Stuff', style: TextStyle(fontSize: 52))),
+    const Center(child: Text('KaiserCoach', style: TextStyle(fontSize: 42))),
+    const Center(child: Text('Shop', style: TextStyle(fontSize: 52))),
+    const Center(child: Text('Account', style: TextStyle(fontSize: 52))),
+  ];
+  List<String> appLabels = [
+    'Home',
+    'Programs',
+    'KaiserCoach',
+    'Shop',
+    'Account'
+  ];
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -44,83 +59,72 @@ class _MyAppState extends State<MyApp> {
           title: Text(_context),
           backgroundColor: Colors.grey.shade900,
         ),
-        body: Center(
-          child: currIndex == 0
-              ? Container(
-                  width: double.infinity,
-                  height: double.infinity,
-                  color: Colors.white54,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: btn1Color,
-                          foregroundColor: Colors.black,
-                          shadowColor: Colors.blueGrey,
-                          shape: const CircleBorder(
-                            side: BorderSide(
-                                width: 2,
-                                color: Colors.grey,
-                                style: BorderStyle.solid),
-                          ),
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            button1clicked = !button1clicked;
-                            if (button1clicked) {
-                              btn1Color = Colors.greenAccent;
-                            } else {
-                              btn1Color = Colors.red;
-                            }
-                          });
-                        },
-                        child: const Text(""),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
-                          setState(() {
-                            button2clicked = !button2clicked;
-                            if (button2clicked) {
-                              btnName = 'Button Clicked';
-                            } else {
-                              btnName = 'Button Unclicked';
-                            }
-                          });
-                        },
-                        child: Text(btnName),
-                      ),
-                    ],
-                  ),
-                )
-              : const Home(),
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.folder),
-              label: 'My Stuff',
-            ),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.phone_android_sharp), label: 'Coach'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.shopping_cart_rounded), label: 'Shop'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.account_circle_sharp), label: 'Account')
-          ],
-          fixedColor: Colors.white,
-          backgroundColor: Colors.grey.shade900,
-          type: BottomNavigationBarType.fixed,
-          currentIndex: currIndex,
-          unselectedItemColor: Colors.grey.shade700,
-          unselectedFontSize: 12,
-          onTap: (int index) {
-            setState(() {
-              currIndex = index;
-            });
-          },
+        body: screens[currIndex],
+        bottomNavigationBar: NavigationBarTheme(
+          data: NavigationBarThemeData(
+            indicatorColor: Colors.transparent,
+            backgroundColor: Colors.grey.shade100,
+            labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+            labelTextStyle: MaterialStateProperty.all(const TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w500,
+              color: Colors.white60,
+            )),
+          ),
+          child: NavigationBar(
+            height: 55,
+            selectedIndex: currIndex,
+            animationDuration: const Duration(milliseconds: 500),
+            backgroundColor: Colors.grey.shade900,
+            onDestinationSelected: (index) => setState(() => currIndex = index),
+            destinations: const [
+              NavigationDestination(
+                icon: Icon(Icons.home_rounded),
+                label: 'home',
+                selectedIcon: Icon(
+                  Icons.home_outlined,
+                  color: Colors.white,
+                  size: 30,
+                ),
+              ),
+              NavigationDestination(
+                icon: Icon(Icons.folder),
+                label: 'My Stuff',
+                selectedIcon: Icon(
+                  Icons.folder_outlined,
+                  color: Colors.white,
+                  size: 30,
+                ),
+              ),
+              NavigationDestination(
+                icon: Icon(Icons.phone_android_sharp),
+                label: 'Coach',
+                selectedIcon: Icon(
+                  Icons.phone_android,
+                  color: Colors.white,
+                  size: 30,
+                ),
+              ),
+              NavigationDestination(
+                icon: Icon(Icons.shopping_cart_rounded),
+                label: 'Shop',
+                selectedIcon: Icon(
+                  Icons.shopping_cart_outlined,
+                  color: Colors.white,
+                  size: 30,
+                ),
+              ),
+              NavigationDestination(
+                icon: Icon(Icons.account_circle_sharp),
+                label: 'Account',
+                selectedIcon: Icon(
+                  Icons.account_circle_outlined,
+                  color: Colors.white,
+                  size: 30,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

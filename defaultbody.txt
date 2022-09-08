@@ -1,0 +1,48 @@
+ Center(
+            child: Container(
+          width: double.infinity,
+          height: double.infinity,
+          color: Colors.white54,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: btn1Color,
+                  foregroundColor: Colors.black,
+                  shadowColor: Colors.blueGrey,
+                  shape: const CircleBorder(
+                    side: BorderSide(
+                        width: 2, color: Colors.grey, style: BorderStyle.solid),
+                  ),
+                ),
+                onPressed: () {
+                  setState(() {
+                    button1clicked = !button1clicked;
+                    if (button1clicked) {
+                      btn1Color = Colors.greenAccent;
+                    } else {
+                      btn1Color = Colors.red;
+                    }
+                  });
+                },
+                child: const Text(""),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    button2clicked = !button2clicked;
+                    if (button2clicked) {
+                      btnName = 'Button Clicked';
+                    } else {
+                      btnName = 'Button Unclicked';
+                    }
+                  });
+                },
+                child: Text(btnName),
+              ),
+            ],
+          ),
+        ),
+        ),
