@@ -32,19 +32,19 @@ class _MyAppState extends State<MyApp> {
   String btnName = "Button Unclicked";
   bool button1clicked = false;
   bool button2clicked = false;
-  int currIndex = 2;
-  final String _context = "as";
+  int currIndex = 0;
+
   dynamic btn1Color = Colors.red;
   final screens = [
+    const Center(child: Text('Home', style: TextStyle(fontSize: 52))),
     const Home(),
-    const Center(child: Text('My Stuff', style: TextStyle(fontSize: 52))),
     const Center(child: Text('KaiserCoach', style: TextStyle(fontSize: 42))),
     const Center(child: Text('Shop', style: TextStyle(fontSize: 52))),
     const Center(child: Text('Account', style: TextStyle(fontSize: 52))),
   ];
-  List<String> appLabels = [
+  final appLabels = [
     'Home',
-    'Programs',
+    'Programs/Meals',
     'KaiserCoach',
     'Shop',
     'Account'
@@ -56,18 +56,19 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text(_context),
+          // title: Text(_context),
+          title: Text(appLabels[currIndex]),
           backgroundColor: Colors.grey.shade900,
         ),
         body: screens[currIndex],
         bottomNavigationBar: NavigationBarTheme(
           data: NavigationBarThemeData(
             indicatorColor: Colors.transparent,
-            backgroundColor: Colors.grey.shade100,
+            backgroundColor: Colors.grey.shade900,
             labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
             labelTextStyle: MaterialStateProperty.all(const TextStyle(
               fontSize: 12,
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.w400,
               color: Colors.white60,
             )),
           ),
@@ -79,8 +80,11 @@ class _MyAppState extends State<MyApp> {
             onDestinationSelected: (index) => setState(() => currIndex = index),
             destinations: const [
               NavigationDestination(
-                icon: Icon(Icons.home_rounded),
-                label: 'home',
+                icon: Icon(
+                  Icons.home_rounded,
+                  color: Colors.grey,
+                ),
+                label: 'Home',
                 selectedIcon: Icon(
                   Icons.home_outlined,
                   color: Colors.white,
@@ -88,16 +92,22 @@ class _MyAppState extends State<MyApp> {
                 ),
               ),
               NavigationDestination(
-                icon: Icon(Icons.folder),
+                icon: Icon(
+                  Icons.grid_view,
+                  color: Colors.grey,
+                ),
                 label: 'My Stuff',
                 selectedIcon: Icon(
-                  Icons.folder_outlined,
+                  Icons.grid_view_outlined,
                   color: Colors.white,
                   size: 30,
                 ),
               ),
               NavigationDestination(
-                icon: Icon(Icons.phone_android_sharp),
+                icon: Icon(
+                  Icons.phone_android_sharp,
+                  color: Colors.grey,
+                ),
                 label: 'Coach',
                 selectedIcon: Icon(
                   Icons.phone_android,
@@ -106,7 +116,10 @@ class _MyAppState extends State<MyApp> {
                 ),
               ),
               NavigationDestination(
-                icon: Icon(Icons.shopping_cart_rounded),
+                icon: Icon(
+                  Icons.shopping_cart_rounded,
+                  color: Colors.grey,
+                ),
                 label: 'Shop',
                 selectedIcon: Icon(
                   Icons.shopping_cart_outlined,
@@ -115,7 +128,10 @@ class _MyAppState extends State<MyApp> {
                 ),
               ),
               NavigationDestination(
-                icon: Icon(Icons.account_circle_sharp),
+                icon: Icon(
+                  Icons.account_circle_sharp,
+                  color: Colors.grey,
+                ),
                 label: 'Account',
                 selectedIcon: Icon(
                   Icons.account_circle_outlined,
