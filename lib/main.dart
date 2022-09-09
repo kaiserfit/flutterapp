@@ -3,7 +3,8 @@
 // import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'home.dart';
+import 'shop.dart';
+import 'mystuff.dart';
 
 void main() {
   runApp(const MyApp());
@@ -37,18 +38,12 @@ class _MyAppState extends State<MyApp> {
   dynamic btn1Color = Colors.red;
   final screens = [
     const Center(child: Text('Home', style: TextStyle(fontSize: 52))),
-    const Home(),
+    const MyStuff(),
     const Center(child: Text('KaiserCoach', style: TextStyle(fontSize: 42))),
-    const Center(child: Text('Shop', style: TextStyle(fontSize: 52))),
+    const Shop(),
     const Center(child: Text('Account', style: TextStyle(fontSize: 52))),
   ];
-  final appLabels = [
-    'Home',
-    'Programs/Meals',
-    'KaiserCoach',
-    'Shop',
-    'Account'
-  ];
+  final appLabels = ['Home', 'My Stuff', 'KaiserCoach', 'Shop', 'Account'];
 
   @override
   Widget build(BuildContext context) {
