@@ -30,10 +30,7 @@ class HomePage extends StatelessWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String btnName = "Button Unclicked";
-  bool button1clicked = false;
-  bool button2clicked = false;
-  int currIndex = 0;
+  int currIndex = 2;
 
   dynamic btn1Color = Colors.red;
   final screens = [

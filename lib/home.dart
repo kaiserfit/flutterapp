@@ -12,7 +12,6 @@ class Home extends StatefulWidget {
 }
 
 class HomeComp extends State<Home> {
-  int _counter = 1;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -48,11 +47,7 @@ class HomeComp extends State<Home> {
                 child: InkWell(
                   splashColor: Colors.grey.shade100,
 
-                  onTap: () {
-                    setState(() {
-                      _counter = 100;
-                    });
-                  },
+                  onTap: () {},
                   // child: Image.asset('images/programs/kaiserfitClub.webp'),
                   child: Column(
                     children: [
@@ -118,11 +113,7 @@ class HomeComp extends State<Home> {
                 child: InkWell(
                   splashColor: Colors.grey.shade100,
 
-                  onTap: () {
-                    setState(() {
-                      _counter = 100;
-                    });
-                  },
+                  onTap: () {},
                   // child: Image.asset('images/programs/kaiserfitClub.webp'),
                   child: Column(
                     children: [
