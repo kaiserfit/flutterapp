@@ -63,6 +63,8 @@ flutter:
   assets:
     - images/
     - images/programs/
+    - images/programs/kaiserfitclub/cookbook/
+    - images/programs/kaiserfitclub/mealplans/
     - images/products/
     - images/covers/
     - images/meal/

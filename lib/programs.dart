@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterapp/programs/kaiserfitclub.dart';
 
 void main() {
   runApp(const Programs());
@@ -20,6 +20,7 @@ class Programs extends StatelessWidget {
           color: Colors.grey.shade500,
           padding: const EdgeInsets.all(10),
           child: ListView(
+            addAutomaticKeepAlives: true,
             children: [
               //kaiserfitclub
               ElevatedButton(
@@ -28,7 +29,15 @@ class Programs extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: 20),
                   elevation: 15.0,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (BuildContext context) {
+                        return const KaiserFitClub();
+                      },
+                    ),
+                  );
+                },
                 child: Column(
                   children: [
                     Image.asset(
