@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
+import 'package:lottie/lottie.dart';
 
 void main() {
   runApp(const KaiserFitClub());
@@ -28,11 +29,7 @@ class _KaiserFitClubState extends State<KaiserFitClub> {
       appBar: AppBar(
         title: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
           Text(
-            cookbook.toString() +
-                ', ' +
-                mealplan.toString() +
-                ', ' +
-                shoppinglist.toString(),
+            '${cookbook.toString()}, ${mealplan.toString()}, ${shoppinglist.toString()}',
             style: const TextStyle(
               fontFamily: 'OpenSansBold',
               fontSize: 22.0,
@@ -64,7 +61,7 @@ class _KaiserFitClubState extends State<KaiserFitClub> {
                 backgroundColor: Colors.green,
                 child: const Icon(Icons.navigate_before_rounded),
               ),
-              Text('Month, ${month.toString()}'),
+              Text('Month ${month.toString()}'),
               FloatingActionButton(
                 onPressed: () {
                   // Add your onPressed code here!
@@ -93,23 +90,22 @@ class _KaiserFitClubState extends State<KaiserFitClub> {
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: [
-                (loading == true)
+                (loading == false)
                     ? InkWell(
                         onTap: () {},
                         splashColor: Colors.red,
                         child: Image.asset(
-                          'images/programs/kaiserfitclub/cookbook/1.webp',
+                          'images/programs/kaiserfitclub/cookbook/3.webp',
                           fit: BoxFit.contain,
                         ),
                       )
-                    : Hero(
-                        tag: imgpath,
-                        child: Image.asset(
-                          imgpath,
-                          height: 50,
-                          width: 50,
-                        ),
+                    : Image.asset(
+                        'images/animated/prepare.gif',
+                        height: 50,
+                        width: 50,
                       ),
+                // Lottie.network(
+                //     'https://assets5.lottiefiles.com/packages/lf20_jbt4j3ea.json'),
                 const SizedBox(
                   width: 30,
                 ),
