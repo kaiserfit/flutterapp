@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
-import 'package:lottie/lottie.dart';
+// import 'package:lottie/lottie.dart';
 
 void main() {
   runApp(const KaiserFitClub());
@@ -18,27 +18,32 @@ class _KaiserFitClubState extends State<KaiserFitClub> {
   int month = 1;
   int min = 1;
   int max = 6;
+  bool genSuccess = false;
   int cookbook = 1;
   int mealplan = 1;
   int shoppinglist = 1;
-  bool loading = true;
+  int workout = 1;
+  bool loading = false;
   String imgpath = 'images/launcher_icon.png';
+  final List cookingVideos = [
+    {'month'}
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+        title: Row(mainAxisAlignment: MainAxisAlignment.start, children: const [
           Text(
-            '${cookbook.toString()}, ${mealplan.toString()}, ${shoppinglist.toString()}',
-            style: const TextStyle(
+            'KaiserFit Club',
+            style: TextStyle(
               fontFamily: 'OpenSansBold',
               fontSize: 22.0,
             ),
           ),
-          const SizedBox(
+          SizedBox(
             width: 20,
           ),
-          const Icon(
+          Icon(
             Icons.star_border_purple500_outlined,
             color: Colors.red,
             size: 30.0,
@@ -46,124 +51,273 @@ class _KaiserFitClubState extends State<KaiserFitClub> {
         ]),
         backgroundColor: Colors.grey.shade900,
       ),
-      body: ListView(
-        padding: const EdgeInsets.all(12),
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              FloatingActionButton(
-                onPressed: () {
-                  setState(() {
-                    resetIndexes();
-                  });
-                },
-                backgroundColor: Colors.green,
-                child: const Icon(Icons.navigate_before_rounded),
-              ),
-              Text('Month ${month.toString()}'),
-              FloatingActionButton(
-                onPressed: () {
-                  // Add your onPressed code here!
-                },
-                backgroundColor: Colors.green,
-                child: const Icon(Icons.navigate_next_rounded),
-              ),
-            ],
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Colors.white, Colors.lightBlueAccent],
           ),
-          const SizedBox(
-            height: 20,
-          ),
-          const Text(
-            "Monthly E-Books",
-            style: TextStyle(
-              fontWeight: FontWeight.w700,
-              fontSize: 22,
-            ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Container(
-            height: 160,
-            padding: const EdgeInsets.all(10),
-            child: ListView(
-              scrollDirection: Axis.horizontal,
+        ),
+        child: ListView(
+          padding: const EdgeInsets.all(12),
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                (loading == false)
-                    ? InkWell(
-                        onTap: () {},
-                        splashColor: Colors.red,
-                        child: Image.asset(
-                          'images/programs/kaiserfitclub/cookbook/3.webp',
-                          fit: BoxFit.contain,
-                        ),
-                      )
-                    : Image.asset(
-                        'images/animated/prepare.gif',
-                        height: 50,
-                        width: 50,
-                      ),
-                // Lottie.network(
-                //     'https://assets5.lottiefiles.com/packages/lf20_jbt4j3ea.json'),
-                const SizedBox(
-                  width: 30,
-                ),
-                InkWell(
-                  onTap: () {},
-                  splashColor: Colors.red,
-                  child: Image.asset(
-                    'images/programs/kaiserfitclub/mealplans/2.webp',
-                    fit: BoxFit.contain,
-                  ),
+                ElevatedButton(
+                  onPressed: () {
+                    // Add your onPressed code here!
+                    setState(() {
+                      if (month > 1) {
+                        resetIndexes();
+                        month--;
+                      }
+                    });
+                  },
+                  style: ButtonStyle(
+                      shape: MaterialStateProperty.all<CircleBorder>(
+                          const CircleBorder(
+                              side: BorderSide(color: Colors.transparent)))),
+                  child: const Icon(Icons.navigate_before_rounded),
                 ),
                 const SizedBox(
-                  width: 30,
+                  width: 20,
                 ),
-                InkWell(
-                  onTap: () {},
-                  splashColor: Colors.red,
-                  child: Image.asset(
-                    'images/programs/kaiserfitclub/cookbook/3.webp',
-                    fit: BoxFit.contain,
-                  ),
+                Text(
+                  'Month ${month.toString()}',
+                  style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: 'Roboto',
+                      fontFamilyFallback: <String>[
+                        'Noto Sans CJK SC',
+                        'Noto Color Emoji'
+                      ]),
+                ),
+                const SizedBox(
+                  width: 20,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      if (month < 14) {
+                        resetIndexes();
+                        month++;
+                      }
+                    });
+                  },
+                  style: ButtonStyle(
+                      shape: MaterialStateProperty.all<CircleBorder>(
+                          const CircleBorder(
+                              side: BorderSide(color: Colors.transparent)))),
+                  child: const Icon(Icons.navigate_next_rounded),
                 ),
               ],
             ),
-          ),
-          const SizedBox(
-            width: 30,
-          ),
-          Image.asset(
-            'images/programs/kfcBanner.webp',
-            fit: BoxFit.cover,
-            height: 100,
-            width: 100,
-          ),
-          InkWell(
-            onTap: () {},
-            splashColor: Colors.red,
-            child: Image.asset(
-              'images/programs/kfcBanner.webp',
-              fit: BoxFit.cover,
-              height: 100,
-              width: 100,
+            const SizedBox(
+              height: 20,
             ),
-          )
-        ],
+            const Text(
+              "Monthly E-Books",
+              style: TextStyle(
+                fontWeight: FontWeight.w700,
+                fontSize: 22,
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Container(
+              height: 160,
+              padding: const EdgeInsets.all(10),
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  (loading == false)
+                      ? ClipRRect(
+                          borderRadius: BorderRadius.circular(16),
+                          child: InkWell(
+                            onTap: () {},
+                            splashColor: Colors.red,
+                            child: Image.asset(
+                              'images/programs/kaiserfitclub/cookbook/$cookbook.webp',
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        )
+                      : ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: Image.asset(
+                            'images/animated/prepare.gif',
+                            height: 100,
+                            width: 100,
+                          ),
+                        ),
+                  // Lottie.network(
+                  //     'https://assets5.lottiefiles.com/packages/lf20_jbt4j3ea.json'),
+                  const SizedBox(
+                    width: 30,
+                  ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(16),
+                    child: InkWell(
+                      onTap: () {},
+                      splashColor: Colors.red,
+                      child: Image.asset(
+                        'images/programs/kaiserfitclub/mealplans/$mealplan.webp',
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 30,
+                  ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(16),
+                    child: InkWell(
+                      onTap: () {},
+                      splashColor: Colors.red,
+                      child: Image.asset(
+                        'images/programs/kaiserfitclub/shoppinglist/$shoppinglist.webp',
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            const Text(
+              "Monthly Cooking Videos",
+              style: TextStyle(
+                fontWeight: FontWeight.w700,
+                fontSize: 22,
+              ),
+            ),
+            Container(
+              height: 160,
+              padding: const EdgeInsets.all(10),
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  (loading == false)
+                      ? ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: InkWell(
+                            onTap: () {},
+                            splashColor: Colors.red,
+                            child: Image.asset(
+                              'images/programs/kaiserfitclub/cookingvideos/month-$month-1.webp',
+                              height: 100,
+                              width: 150,
+                            ),
+                          ),
+                        )
+                      : ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: Image.asset(
+                            'images/animated/prepare.gif',
+                            height: 100,
+                            width: 100,
+                          ),
+                        ),
+                  // Lottie.network(
+                  //     'https://assets5.lottiefiles.com/packages/lf20_jbt4j3ea.json'),
+                  const SizedBox(
+                    width: 30,
+                  ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(16),
+                    child: InkWell(
+                      onTap: () {},
+                      splashColor: Colors.red,
+                      child: Image.asset(
+                        'images/programs/kaiserfitclub/cookingvideos/month-$month-2.webp',
+                        height: 100,
+                        width: 150,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 30,
+                  ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(16),
+                    child: InkWell(
+                      onTap: () {},
+                      splashColor: Colors.red,
+                      child: Image.asset(
+                        'images/programs/kaiserfitclub/cookingvideos/month-$month-3.webp',
+                        height: 100,
+                        width: 150,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            const Text(
+              "Monthly Workout Videos",
+              style: TextStyle(
+                fontWeight: FontWeight.w700,
+                fontSize: 22,
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: InkWell(
+                onTap: () {},
+                splashColor: Colors.red,
+                child: Image.asset(
+                  'images/programs/kaiserfitclub/workout/$workout.webp',
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(14),
+              child: Image.asset(
+                'images/programs/kfcBanner.webp',
+                fit: BoxFit.cover,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 
   void resetIndexes() {
-    mealplan = 1;
-
-    while ((cookbook == shoppinglist || cookbook == mealplan) &&
-        mealplan == shoppinglist) {
-      cookbook = getRandomNum();
-      mealplan = getRandomNum();
-      shoppinglist = getRandomNum();
-    }
+    cookbook = getRandomNum();
+    mealplan = getRandomNum();
+    shoppinglist = getRandomNum();
+    workout = getRandomNum();
+    // mealplan = 1;
+    // cookbook = 1;
+    // shoppinglist = 1;
+    // workout = 1;
+    // while ((cookbook == shoppinglist || cookbook == mealplan) &&
+    //     (mealplan == shoppinglist || mealplan == workout)) {
+    //   cookbook = getRandomNum();
+    //   mealplan = getRandomNum();
+    //   shoppinglist = getRandomNum();
+    //   workout = getRandomNum();
+    // }
   }
 
   int getRandomNum() {
