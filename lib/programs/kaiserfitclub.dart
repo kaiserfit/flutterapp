@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 // import 'package:lottie/lottie.dart';
-
+import 'package:flutter_pdfview/flutter_pdfview.dart';
 void main() {
   runApp(const KaiserFitClub());
 }
