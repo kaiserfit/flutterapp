@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 // import 'package:lottie/lottie.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
+
 void main() {
   runApp(const KaiserFitClub());
 }
@@ -25,8 +26,14 @@ class _KaiserFitClubState extends State<KaiserFitClub> {
   int workout = 1;
   bool loading = false;
   String imgpath = 'images/launcher_icon.png';
+  var map = {};
   final List cookingVideos = [
-    {'month'}
+    {
+      'month': 1,
+      'ebooks': {
+        {'id': 1, 'link': ''}
+      }
+    }
   ];
   @override
   Widget build(BuildContext context) {
